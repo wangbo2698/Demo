@@ -1,0 +1,300 @@
+public class TestDemo2 {
+
+    public static double function() {
+        double sum = 0;
+        int flg = 1;
+        for (int i = 1; i <= 100; i++) {
+            sum += 1.0/i * flg;
+            flg = -flg;
+        }
+        //System.out.println(sum);
+        return sum;
+    }
+
+    public static void game() {
+        int count = 3;
+        while (count != 0) {
+            Scanner scanner = new Scanner(System.in);
+            String password = scanner.nextLine();
+            if(password.equals("1234")) {
+                System.out.println("登录成功！");
+                break;
+            }else {
+                count--;
+                System.out.println("还有"+count+"次机会！");
+            }
+        }
+    }
+
+    /**
+     *
+     * @param n 11
+     * @return 3
+     */
+    public static int binNumOfOne1(int n) {
+        int count = 0;
+        for (int i = 0; i < 32; i++) {
+            if(((n >>> i) & 1) != 0) {
+              count++;
+            }
+        }
+        return count;
+    }
+
+    public static int binNumOfOne2(int n) {
+        int count = 0;
+        while (n != 0){
+            if((n & 1) != 0) {
+                count++;
+            }
+            n = n >>> 1;
+        }
+        return count;
+    }
+
+    public static int binNumOfOne(int n) {
+        int count = 0;
+        while (n != 0){
+            count++;
+            n = n&(n-1);
+        }
+        return count;
+    }
+
+    /**
+     *
+     * @param num 123
+     */
+    public static void print(int num) {
+        while (num != 0) {
+            System.out.print(num % 10+" ");
+            num /= 10;//123/10=12  12/10  1/10=0
+        }
+    }
+
+
+    public static void main(String[] args) {
+        print(123);
+       /* System.out.println(binNumOfOne(15));//4
+        System.out.println(binNumOfOne(2));
+        System.out.println(binNumOfOne(4));
+        System.out.println(binNumOfOne(6));//2*/
+        //System.out.println(binNumOfOne(-1));
+    }
+
+    /**
+     *
+     * @param a
+     * @param b
+     * @return
+     */
+    public static int gcd(int a,int b) {
+        int c = a%b;//6
+        while (c != 0) {
+            a = b;//18
+            b = c;//6
+            c = a % b;
+        }
+        return b;
+    }
+
+    public static void main10(String[] args) {
+        System.out.println(gcd(18, 24));
+    }
+
+    /*public static void fuc(int a,int b) {
+        System.out.println(a+" " +b);
+    }
+
+    public static void fuc(int a,int b,int c) {
+        System.out.println(a+" " +b+" "+c);
+    }
+*/
+
+    /**
+     * 可变参数编程  使用不多
+     * @param array
+     */
+    public static void func(int... array) {
+        for (int a : array) {
+            System.out.print(a+" ");
+        }
+        System.out.println();
+    }
+
+    public static void main9(String[] args) {
+        func(1);
+        func(1,2);
+        func(1,2,3);
+        func(1,2,3,4);
+        func(1,2,3,4,5,6,7,8,9,10);
+    }
+
+    // int_ sum(_int,_int)
+    public static int sum(int a,int b) {
+        return a+b;
+    }
+
+    public static double sum(int a, double b) {
+        return a+b;
+    }
+
+    //double_ sum(_double,_int)
+    public static double sum(double a,int b) {
+        return a+b;
+    }
+
+    //int_ sum(_int,_int,_int)
+    public static int sum(int a,int b,int c) {
+        return a+b+c;
+    }
+
+    //double_ sum(_double,_double)
+    public static double sum(double a,double b) {
+        return a+b;
+    }
+
+    public static void main8(String[] args) {
+        int ret = sum(1,2);
+        System.out.println(ret);
+
+        double ret2 = sum(10.4,20.4);
+        System.out.println(ret2);
+    }
+
+    /*public static void main7(String[] args) {
+        int ret = sum(1,2);
+        System.out.println(ret);
+        System.out.println("===========");
+        System.out.println(sum(1,2));
+    }*/
+
+    public static void swap(int a,int b) {
+        int tmp = a;
+        a = b;
+        b = tmp;
+    }
+
+    public static void main6(String[] args) {
+        int a = 10;
+        int b = 20;
+        System.out.println("交换前："+a+" "+b);
+        swap(a,b);
+        System.out.println("交换后："+a+" "+b);
+    }
+
+
+    public static void main5(String[] args) {
+        int a = 10;
+        int b = 20;
+        System.out.println("交换前："+a+" "+b);
+        int tmp = a;
+        a = b;
+        b = tmp;
+        System.out.println("交换后："+a+" "+b);
+    }
+
+    public static void main4(String[] args) {
+        int a = 10;
+        int b = 20;
+        System.out.println("第一次调用方法之前");
+        int ret = add(a, b);
+        System.out.println("第一次调用方法之后");
+        System.out.println("ret = " + ret);
+        System.out.println("第二次调用方法之前");
+        ret = add(30, 50);
+        System.out.println("第二次调用方法之后");
+        System.out.println("ret = " + ret);
+    }
+    public static int add(int x, int y) {
+        System.out.println("调用方法中 x = " + x + " y = " + y);
+        return x + y;
+    }
+
+
+    public static int add() {
+        System.out.println("add方法被调用了");
+        int a = 10;
+        int b = 20;
+        return a+b;
+    }
+
+    public static int add2(int a,int b) {
+        System.out.println("add2方法被调用了");
+        return a+b;
+    }
+
+    public static void main3(String[] args) {
+        int c = 10;
+        int d = 20;
+        int ret = add2(c,d);
+        System.out.println(ret);
+        /*int ret = add2(10,20);//方法的调用  接受的数据类型要和方法的返回值是一样
+        System.out.println(ret);*/
+    }
+
+    /**
+     * 求n的阶乘
+     * @param n
+     * @return
+     */
+    public static int fac(int n) {
+        int sum = 1;
+        for (int i = 1; i <= n; i++) {
+            sum *= i;
+        }
+        return sum;
+    }
+
+    /**
+     * 求n!的和
+     * @return
+     */
+    public static int facSum() {
+        int sum = 0;
+        for (int j = 1; j <= 5; j++) {
+            sum = sum+fac(j);
+        }
+        return sum;
+    }
+
+    public static int facSum1() {
+        int num = 5;
+        int sum = 0;
+        for (int j = 1; j <= num; j++) {
+            int fac = 1;
+            for (int i = 1; i <= j; i++) {
+                fac *= i;
+            }
+            sum += fac;
+        }
+        //System.out.println(sum);
+        return sum;
+    }
+
+    public static void main2(String[] args) {
+        int ret = facSum();//调用
+        System.out.println("ret = "+ret);
+    }
+
+
+    /**
+     * 方法：函数
+     * @param name
+     * @return
+     */
+    public static String  autumnTrousers(String name)  {
+        System.out.println(name+" 穿秋裤！");
+        return "ok!";//return 代表方法的结束
+    }
+    //void 代表没有返回值
+    public static void func() {
+
+    }
+    public static void main1(String[] args) {
+        String ret = autumnTrousers ("小明");
+        System.out.println(ret);
+        String ret2 = autumnTrousers ("张三");
+        System.out.println(ret2);
+    }
+}
